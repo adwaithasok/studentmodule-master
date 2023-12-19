@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+        }
+
+        table {
+            width: 60%;
+            /* Adjust the width as needed */
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        #student-info h2,
+        #student-info h3,
+        #student-info p {
+            margin: 0 0 10px;
+        }
+
+        /* footer { */
+        /* background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 1em;
+        position: fixed;
+        bottom: 0;
+        width: 100%; */
+        /* } */
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Student Details</h1>
+    </header>
+    <main>
+        <table id="studentTable">
+            <tr>
+                <th>Category</th>
+                <th>Details</th>
+            </tr>
+            <tr>
+                <td>Student ID:</td>
+                <td id="studentId">____</td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td id="studentName">___</td>
+            </tr>
+            <tr>
+                <td>Date of Birth:</td>
+                <td id="dob">___</td>
+            </tr>
+            <tr>
+                <td>Class:</td>
+                <td id="class">___</td>
+            </tr>
+        </table>
+    </main>
+
+
+    <script>
+        // Function to fetch data from the API
+        // Function to fetch data from the API
+        function fetchData(registerNumber, dob) {
+            var url = "http://127.0.0.1:5000/get_registration_data?register_number=" + registerNumber + "&dob=" + dob;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => updateStudentDetails(data.registration_data))
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Function to update student details in the HTML
+        function updateStudentDetails(registrationData) {
+            document.getElementById('studentId').innerText = registrationData.register_number;
+            document.getElementById('studentName').innerText = registrationData.name;
+            document.getElementById('dob').innerText = registrationData.dob;
+            document.getElementById('class').innerText = registrationData.department;  // Assuming 'work' corresponds to the class
+        }
+
+        // Retrieve values from localStorage
+        var registerNumber = localStorage.getItem('registerNumber');
+        var dob = localStorage.getItem('dob');
+
+        // Call fetchData with the retrieved values
+        fetchData(registerNumber, dob);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assign Work</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .arrow {
+      border: solid black;
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      padding: 3px;
+    }
+
+    .right {
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 80%;
+      margin: 20px auto; /* Adjusted margin for top center alignment */
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+    }
+
+    th {
+      background-color: #4caf50;
+      color: #fff;
+    }
+
+    td input {
+      transform: scale(1.5);
+    }
+
+    .arrow-button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 15px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s;
+      position: fixed;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      z-index: 3; /* Ensure the button is on top of other elements */
+    }
+
+    .arrow-button:hover {
+      background-color: #45a049;
+    }
+
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    #popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 2;
+      border-radius: 8px;
+    }
+
+    #popup textarea {
+      width: 100%;
+      box-sizing: border-box;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    #popup button {
+      display: inline-block;
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    #popup button:hover {
+      background-color: #45a049;
+    }
+
+    #close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      color: #888;
+      cursor: pointer;
+    }
+
+    .select-all {
+      transform: scale(1.5);
+    }
+  </style>
+</head>
+<body>
+  <!-- <h2>Assign Work</h2> -->
+
+
+
+  <table>
+    <thead>
+      <tr>
+        <th><input type="checkbox" class="select-all" onchange="selectAll(this)"></th>
+        <th>Student ID</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="checkbox" class="select-individual"></td>
+        <td>1</td>
+        <td>John Doe</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="select-individual"></td>
+        <td>2</td>
+        <td>Jane Doe</td>
+      </tr>
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+
+  <button class="arrow-button" onclick="openPopup()">
+    <i class="arrow right"></i>
+  </button>
+
+  <div id="overlay"></div>
+  <div id="popup">
+    <span id="close" onclick="clearPopup()">&times;</span>
+    <label for="workDetails">Work Details:</label>
+    <textarea id="workDetails" rows="4" placeholder="Enter work details"></textarea>
+    <br>
+    <button onclick="assignWork()">Assign</button>
+    <button onclick="clearPopup()">Clear</button>
+  </div>
+
+  <script>
+    function selectAll(checkbox) {
+      const checkboxes = document.querySelectorAll('.select-individual');
+      checkboxes.forEach(cb => {
+        cb.checked = checkbox.checked;
+      });
+    }
+
+    function openPopup() {
+      const checkboxes = document.querySelectorAll('.select-individual:checked');
+      if (checkboxes.length > 0) {
+        const overlay = document.getElementById('overlay');
+        const popup = document.getElementById('popup');
+
+        overlay.style.display = 'block';
+        popup.style.display = 'block';
+      } else {
+        // No checkboxes selected, display a message or take appropriate action
+        alert('Please select at least one student.');
+      }
+    }
+
+    function clearPopup() {
+      const overlay = document.getElementById('overlay');
+      const popup = document.getElementById('popup');
+      const textarea = document.getElementById('workDetails');
+
+      overlay.style.display = 'none';
+      popup.style.display = 'none';
+      textarea.value = '';
+    }
+
+    function assignWork() {
+      const overlay = document.getElementById('overlay');
+      const popup = document.getElementById('popup');
+      const textarea = document.getElementById('workDetails');
+
+      // Perform the assignment logic here
+      // For demonstration, let's just log the details to the console
+      console.log('Work Details:', textarea.value);
+
+      // Close the popup
+      overlay.style.display = 'none';
+      popup.style.display = 'none';
+      textarea.value = '';
+    }
+  </script>
+
+ 
+
+  <button class="arrow-button" onclick="openPopup()">
+    <i class="arrow right"></i>
+  </button>
+
+  <div id="overlay"></div>
+  <div id="popup">
+    <span id="close" onclick="clearPopup()">&times;</span>
+    <label for="workDetails">Work Details:</label>
+    <textarea id="workDetails" rows="4" placeholder="Enter work details"></textarea>
+    <br>
+    <button onclick="assignWork()">Assign</button>
+    <button onclick="clearPopup()">Clear</button>
+  </div>
+
+  <script>
+    function selectAll(checkbox) {
+      const checkboxes = document.querySelectorAll('.select-individual');
+      checkboxes.forEach(cb => {
+        cb.checked = checkbox.checked;
+      });
+    }
+
+    function openPopup() {
+      const checkboxes = document.querySelectorAll('.select-individual:checked');
+      if (checkboxes.length > 0) {
+        const overlay = document.getElementById('overlay');
+        const popup = document.getElementById('popup');
+
+        overlay.style.display = 'block';
+        popup.style.display = 'block';
+      } else {
+        // No checkboxes selected, display a message or take appropriate action
+        alert('Please select at least one student.');
+      }
+    }
+
+    function clearPopup() {
+      const overlay = document.getElementById('overlay');
+      const popup = document.getElementById('popup');
+      const textarea = document.getElementById('workDetails');
+
+      overlay.style.display = 'none';
+      popup.style.display = 'none';
+      textarea.value = '';
+    }
+
+    function assignWork() {
+      const checkboxes = document.querySelectorAll('.select-individual:checked');
+      const textarea = document.getElementById('workDetails');
+
+      if (checkboxes.length > 0) {
+        const selectedStudents = Array.from(checkboxes).map(cb => {
+          const row = cb.closest('tr');
+          return {
+            studentId: row.cells[1].textContent,
+            name: row.cells[2].textContent,
+            // Add more details as needed
+          };
+        });
+
+        // Send selectedStudents and textarea.value to the server using AJAX or fetch
+        // For demonstration, let's just log the details to the console
+        console.log('Selected Students:', selectedStudents);
+        console.log('Work Details:', textarea.value);
+
+        // Close the popup
+        clearPopup();
+      } else {
+        // No checkboxes selected, display a message or take appropriate action
+        alert('Please select at least one student.');
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+</body>
+</html>

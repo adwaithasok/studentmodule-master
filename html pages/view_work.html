@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            /* Adjust the value as needed */
+            font-size: 16px;
+            /* Adjust the value as needed */
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+
+        #album-name-1 {
+            margin-bottom: 16px;
+            /* Adjust the value as needed */
+        }
+
+
+        main {
+            padding: 20px;
+        }
+
+        .work-details {
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .work-detailstwo {
+            background-color: #d7d7d7;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-section,
+        .status-section {
+            margin-top: 20px;
+            margin-bottom: 20px;
+
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="file"] {
+            margin-bottom: 16px;
+
+        }
+
+        .status-text {
+            padding: 8px;
+            background-color: #eee;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Work Details</h1>
+    </header>
+    <main>
+        <!-- First Work Detail -->
+        <div class="work-details">
+            <label for="work-no-1">Work Number:</label>
+            <p id="work-no-1">-</p>
+
+            <label for="work-title-1">Work Title:</label>
+            <p id="work-title-1">-</p>
+
+            <!-- <div class="status-section">
+                <label>Status:</label>
+                <div class="status-text">Approved</div> -->
+
+        </div>
+
+        <div class="work-detailstwo">
+
+            <label for="album-name-1">Album Name:</label>
+            <input type="text" id="album-name-1" placeholder="Enter album name" value="AssignmentCS">
+
+
+            <label for="workk-number-1">Work Number:</label>
+            <input type="text" id="workk-number-1" placeholder="Enter work number" value="workk-number-1">
+
+
+            <div class="upload-section">
+                <label for="duplicate-check-1">Check for Duplicate:</label>
+                <input type="file" id="duplicate-check-1">
+                <button onclick="checkDuplicate(1)">Upload</button>
+                <p id="duplicate-result-1"></p>
+            </div>
+
+
+        </div>
+        </div>
+
+        <!-- Second Work Detail -->
+        <!-- Add more work details as needed -->
+    </main>
+    <script>
+        function checkDuplicate() {
+            // Retrieve values from localStorage
+            var registerNumber = localStorage.getItem('registerNumber');
+            var dob = localStorage.getItem('dob');
+            var albumName = document.getElementById('album-name-1').value;
+            var dataFile = document.getElementById('duplicate-check-1').files[0];  // Corrected ID
+            var workNumberValue = document.getElementById('workk-number-1').value;
+
+            // Check if album name is provided
+            if (!albumName) {
+                alert('Please enter the album name.');
+                return;
+            }
+
+            // Check if a file is selected for duplicate check
+            if (!dataFile) {
+                alert('Please select a file for duplicate check.');
+                return;
+            }
+
+            var formData = new FormData();
+            formData.append('data', dataFile);
+            formData.append('album', albumName);
+            formData.append('register_number', registerNumber);
+            formData.append('work_number', workNumberValue);
+
+            // Fetch data from the check_duplicate API
+            fetch('http://127.0.0.1:5000/check_duplicate', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Display the result in the HTML
+                    var resultElement = document.getElementById(`duplicate-result-1`);
+                    resultElement.innerText = data.message;
+
+                    // Add success or failure alert
+                    if (data.message.startsWith('Data doesn\'t exist')) {
+                        alert('Duplicate check successful. Data doesn\'t exist in the database.');
+                    } else if (data.message.startsWith('Data already exists')) {
+                        alert('Duplicate check successful. Data already exists in the database.');
+                    } else {
+                        alert('Unexpected result from the server.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while checking for duplicates.');
+                });
+        }
+
+
+
+
+
+
+        // Function to fetch data from the API
+        function fetchData(registerNumber, dob) {
+            var url = `http://127.0.0.1:5000/get_registration_data?register_number=${registerNumber}&dob=${dob}`;
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => updateStudentDetails(data.registration_data))
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Function to update student details in the HTML
+        function updateStudentDetails(registrationData) {
+            document.getElementById('work-title-1').innerText = registrationData.work;
+            // Assuming 'work' corresponds to the class
+            document.getElementById('work-no-1').innerText = registrationData.workNumber;
+            document.getElementById('workk-number-1').value = registrationData.workNumber;
+
+
+        }
+
+        // Retrieve values from localStorage
+        var registerNumber = localStorage.getItem('registerNumber');
+        var dob = localStorage.getItem('dob');
+        fetchData(registerNumber, dob);
+    </script>
+</body>
+
+</html>

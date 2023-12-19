@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Enhanced Work Details</title>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="work-details">
+            <form>
+                <div class="form-group">
+                    <label for="work-title-1">Work Title:</label>
+                    <p id="work-title-1">-</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="album-name-1">Album Name:</label>
+                    <input type="text" class="form-control" id="album-name-1" placeholder="Enter album name">
+                </div>
+
+                <div class="form-group">
+                    <label for="work-number-1">Work Number:</label>
+                    <input type="text" class="form-control" id="work-number-1" placeholder="Enter work number">
+                </div>
+
+                <div class="form-group upload-section">
+                    <label for="duplicate-check-1">Check for Duplicate:</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="duplicate-check-1">
+                        <label class="custom-file-label" for="duplicate-check-1">Choose file</label>
+                    </div>
+                    <button type="button" class="btn btn-primary mt-2" onclick="checkDuplicate(1)">Check
+                        Duplicate</button>
+                    <p id="duplicate-result-1">-</p>
+                </div>
+
+                <div class="form-group status-section">
+                    <label>Status:</label>
+                    <div class="status-text badge badge-success">Approved</div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress mt-3">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                </div>
+
+                <!-- Next and Previous buttons for progress -->
+                <div class="mt-3">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep()">Previous</button>
+                    <button type="button" class="btn btn-primary float-right" onclick="nextStep()">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function checkDuplicate(step) {
+            // Add your logic for checking duplicates here
+            // Update progress bar after the check is complete
+            updateProgressBar(step);
+        }
+
+        function updateProgressBar(step) {
+            // Calculate progress based on the number of steps
+            const totalSteps = 3; // Update this if you have more steps
+            const progress = (step / totalSteps) * 100;
+
+            // Update the width of the progress bar
+            $('.progress-bar').css('width', `${progress}%`).attr('aria-valuenow', progress);
+        }
+
+        function nextStep() {
+            // Add logic to navigate to the next step
+            const currentStep = 1; // Update this to the current step
+            const nextStep = currentStep + 1;
+            updateProgressBar(nextStep);
+        }
+
+        function prevStep() {
+            // Add logic to navigate to the previous step
+            const currentStep = 1; // Update this to the current step
+            const prevStep = currentStep - 1;
+            updateProgressBar(prevStep);
+        }
+    </script>
+
+</body>
+
+</html>

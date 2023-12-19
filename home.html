@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>iPortfolio Bootstrap Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <!-- =======================================================
+  * Template Name: iPortfolio
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+      <div class="profile">
+        <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light" id="profileName"><a href="index.html">Loading...</a></h1>
+      </div>
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>work</span></a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="hero-container" data-aos="fade-in">
+      <h1 class="text-light" id="profileName2">Loading...</h1>
+      <p>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer"></span></p>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+        <!-- Include your HTML page for work details here -->
+        <!-- <iframe src="/html pages/view_profile.html" width="100%" height="800px" frameborder="0"></iframe> -->
+        <iframe src="/html pages/view_profile.html?register_number=<%= registerNumber %>&dob=<%= dob %>" width="100%"
+          height="800px" frameborder="0"></iframe>
+
+      </div>
+    </section>
+
+    <!-- ======= Resume Section ======= -->
+    <section id="resume" class="resume">
+      <div class="container">
+        <div class="section-title">
+          <h2>Work Status</h2>
+          <p>Best of luck with your submissions! May your efforts shine brightly in your academic journey</p>
+        </div>
+        <!-- ======= Work Details Section ======= -->
+        <section id="work-details" class="work-details">
+          <div class="container">
+            <!-- Include your HTML page for work details here -->
+            <!-- <iframe src="/html pages/view_work.html" width="100%" height="800px" frameborder="0"></iframe> -->
+            <iframe src="/html pages/view_work.html?register_number=<%= registerNumber %>&dob=<%= dob %>" width="100%"
+              height="800px" frameborder="0"></iframe>
+
+          </div>
+        </section>
+
+        <!-- ======= Best of Luck Section ======= -->
+        <section id="best-of-luck" class="best-of-luck">
+          <div class="container">
+            <div class="section-title">
+              <h2>Best of Luck!</h2>
+              <p>May your efforts shine brightly in your academic journey.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Back to top button -->
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Custom Script to Fetch and Display User's Name -->
+  <!-- Add this script block before the closing </body> tag in your HTML file -->
+
+
+
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Function to make the AJAX request
+    function fetchData() {
+      console.log('adwaith');
+
+      // Get the query string from the URL
+      var queryString = window.location.search;
+
+      // Remove the leading "?" character
+      queryString = queryString.substring(1);
+
+      // Split the query string into an array of key-value pairs
+      var queryParams = queryString.split("&");
+
+      // Create an object to store the key-value pairs
+      var params = {};
+      for (var i = 0; i < queryParams.length; i++) {
+        var pair = queryParams[i].split("=");
+        var key = decodeURIComponent(pair[0]);
+        var value = decodeURIComponent(pair[1]);
+        params[key] = value;
+      }
+
+      // Now you can access the values using the parameter names
+      var registerNumber = params.register_number;
+      var dob = params.dob;
+      console.log(registerNumber);
+      console.log(dob);
+
+      // Save values to localStorage
+      localStorage.setItem('registerNumber', registerNumber);
+      localStorage.setItem('dob', dob);
+
+      // Replace the following URL with your actual API endpoint
+      var apiUrl = "http://127.0.0.1:5000/get_registration_data?register_number=" + registerNumber + "&dob=" + dob;
+
+      // Make the AJAX request
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", apiUrl, true);
+      xhr.onreadystatechange = function () {
+        var profileNameElement = document.getElementById("profileName");
+        var profileNameElement2 = document.getElementById("profileName2");
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          // Parse the JSON response
+          var responseData = JSON.parse(xhr.responseText);
+          console.log({ responseData });
+
+          // Update the profile name with the fetched data
+          if (responseData && responseData.registration_data) {
+            console.log("responseData", { responseData });
+
+            profileNameElement.textContent = responseData.registration_data.name;
+            profileNameElement2.textContent = responseData.registration_data.name;
+          }
+        }
+        console.log('Response:', xhr.responseText);
+        console.log('Parsed Response:', responseData);
+        console.log('Name:', responseData.registration_data.name);
+      };
+
+      xhr.send();
+    }
+
+    // Call the fetchData function when the page loads
+    document.addEventListener("DOMContentLoaded", function () {
+      fetchData();
+    });
+
+
+    // Call the fetchData function when the page loads
+    document.addEventListener("DOMContentLoaded", function () {
+      fetchData();
+    });
+  </script>
+</body>
+
+</html>

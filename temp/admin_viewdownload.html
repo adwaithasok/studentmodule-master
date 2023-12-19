@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View and Download</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+    }
+
+    nav:hover {
+      background-color: #ffffff; /* Change background color on hover */
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 30px;
+      margin-right: 10px;
+    }
+
+    .container {
+      flex-grow: 1;
+      padding: 20px;
+      position: relative; /* Added position relative */
+    }
+
+    .content {
+      display: flex;
+      justify-content: center; /* Center align content */
+      align-items: flex-start; /* Align content to the top */
+    }
+
+    .work-details {
+      width: 80%;
+    }
+
+    .work-list {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+      background-color: #fff;
+      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .work-list th, .work-list td {
+      border: 1px solid #ddd;
+      padding: 12px;
+    }
+
+    .work-list th {
+      background-color: #4caf50;
+      color: #fff;
+    }
+
+    .download-button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .download-button:hover {
+      background-color: #45a049;
+    }
+
+    .more-details-button {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+    }
+
+    .more-details-button:hover {
+      background-color: #2980b9;
+    }
+
+    #dashboard-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 2;
+      border-radius: 8px;
+    }
+
+    #close-dashboard {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="#" onclick="showContent('workdetails')">
+          <i class="fas fa-file"></i>
+          <!-- <span class="nav-item">Work Details</span> -->
+        </a></li>
+      </ul>
+    </nav>
+
+    <div id="workdetails" class="content">
+      <div class="work-details">
+        <!-- <h2>Work Details</h2> -->
+        <table class="work-list">
+          <thead>
+            <tr>
+              <th>Student ID</th>
+              <th>Name</th>
+              <th>Assigned Work</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>samuel</td>
+              <td>Essay Writing</td>
+              <td>Pending</td>
+              <td>
+                <button class="download-button" onclick="downloadWork(1)">Download</button>
+                <button class="more-details-button" onclick="showDashboardPopup(1)">More Details</button>
+              </td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="dashboard-popup">
+      <span id="close-dashboard" onclick="closeDashboardPopup()">&times;</span>
+      <h2>Dashboard</h2>
+      <!-- Dashboard content goes here -->
+      <p>Efficiency Chart</p>
+      <!-- Additional dashboard details -->
+    </div>
+  </div>
+
+  <script>
+    function showContent(contentId) {
+      const contentElements = document.querySelectorAll('.content > div');
+      contentElements.forEach(element => {
+        element.style.display = 'none';
+      });
+
+      const selectedContent = document.getElementById(contentId);
+      selectedContent.style.display = 'flex';
+    }
+
+    function downloadWork(studentId) {
+      // Implement download logic for the selected student
+      console.log('Downloading work for Student ID:', studentId);
+    }
+
+    function showDashboardPopup(studentId) {
+      // Implement displaying the dashboard popup for the selected student
+      console.log('Showing dashboard for Student ID:', studentId);
+
+      const dashboardPopup = document.getElementById('dashboard-popup');
+      dashboardPopup.style.display = 'block';
+    }
+
+    function closeDashboardPopup() {
+      const dashboardPopup = document.getElementById('dashboard-popup');
+      dashboardPopup.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
